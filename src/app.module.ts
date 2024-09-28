@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common'
+import { Module } from '@nestjs/common';
 import { PingModule } from './ping/ping.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DayTimetableModule } from './day-timetable/daytimetable.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       },
     }),
     PingModule,
+    DayTimetableModule,
   ],
 })
 export class AppModule {}
