@@ -1,4 +1,5 @@
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Timeslot } from '../entities/daytimetable.entity';
 
 export class DayTimetableRequest {
   @IsNotEmpty()
@@ -34,9 +35,4 @@ export class DayTimetableResponse {
   is_day_off: boolean;
 
   timeslots: Timeslot[];
-}
-
-class Timeslot {
-  begin_at: number;
-  end_at: number;
 }
