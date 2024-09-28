@@ -6,14 +6,14 @@ export class Event {
   id: ObjectId;
 
   @Column()
-  created_at: Timestamp;
+  created_at: Date;
 
   @Column()
-  updated_at: Timestamp;
+  updated_at: Date;
 
   @Column()
-  begin_at: Timestamp;
+  begin_at: Date;
 
   @Column()
-  end_at: Timestamp;
+  end_at: Date;
 }
