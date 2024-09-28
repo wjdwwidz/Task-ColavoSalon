@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectId, ObjectIdColumn, Timestamp } from 'typeorm';
+import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class Event {
