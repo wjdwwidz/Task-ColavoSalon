@@ -17,11 +17,11 @@ export class BootstrapService implements OnModuleInit {
     @InjectRepository(WorkHour)
     private readonly workHourRepository: WorkHourRepository,
   ) {}
-  onModuleInit(): any {
-    this.eventRepository.delete({})
-    this.workHourRepository.delete({})
-    this.loadEventDataFromJson()
-    this.loadWorkHourDataFromJson()
+  async onModuleInit() {
+    await this.eventRepository.delete({})
+    await this.workHourRepository.delete({})
+    await this.loadEventDataFromJson()
+    await this.loadWorkHourDataFromJson()
   }
 
   private async loadEventDataFromJson() {
