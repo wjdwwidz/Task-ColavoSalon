@@ -1,10 +1,9 @@
-import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
-import { isBoolean } from 'class-validator';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
-@Entity()
+@Entity('work_hours')
 export class WorkHour {
   @ObjectIdColumn()
-  id: ObjectId;
+  key: string;
 
   @Column()
   is_day_off: boolean;
