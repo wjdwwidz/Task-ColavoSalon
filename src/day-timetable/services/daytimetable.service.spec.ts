@@ -13,6 +13,9 @@ describe('DayTimetableService', () => {
       imports: [AppModule],
     }).compile();
     service = module.get<DayTimetableService>(DayTimetableService);
+
+    app = module.createNestApplication();
+    await app.init();
   });
 
   afterAll(async () => {
