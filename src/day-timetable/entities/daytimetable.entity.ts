@@ -1,14 +1,19 @@
+import { Expose } from 'class-transformer';
+
 export class DayTimetable {
-  start_of_day: number;
+  startOfDay: number;
 
-  day_modifier: number;
+  dayModifier: number;
 
-  is_day_off: boolean;
+  isDayOff: boolean;
 
-  timeslots: Timeslot[];
+  timeslots: TimeSlot[];
 }
 
-export class Timeslot {
-  begin_at: number;
-  end_at: number;
+export class TimeSlot {
+  @Expose({ name: 'begin_at' })
+  beginAt: number;
+
+  @Expose({ name: 'end_at' })
+  endAt: number;
 }
