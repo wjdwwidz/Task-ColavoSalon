@@ -14,7 +14,7 @@ export class DayTimetableService {
   constructor(
     private readonly timeslotService: TimeSlotService,
     @InjectRepository(WorkHour)
-    private readonly workHourRepository: MongoRepository<WorkHour>,
+    private readonly workHourRepository: WorkHourRepository,
   ) {}
 
   async getDayTimetables(
@@ -65,7 +65,7 @@ export class DayTimetableService {
       };
     }
     return await this.workHourRepository.findOne({
-      where: { _id: dayOfWeek },
+      where: { key: dayOfWeek },
     });
   }
 }
