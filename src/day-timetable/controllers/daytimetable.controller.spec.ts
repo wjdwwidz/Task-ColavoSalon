@@ -45,4 +45,56 @@ describe('DayTimetableController /getTimeSlots', () => {
     expect(firstElement.is_day_off).toBe(false);
     expect(firstElement.timeslots.length).toBe(20);
   });
+
+  it('when 20210510', async () => {
+    const requestBody: DayTimetableRequest = {
+      start_day_identifier: '20210510',
+      timeslot_interval: 1800,
+      is_ignore_schedule: false,
+      is_ignore_workhour: false,
+      service_duration: 1800,
+      timezone_identifier: 'Asia/Seoul',
+      days: 1,
+    };
+
+    const response = await request(app.getHttpServer())
+      .post('/getTimeSlots')
+      .send(requestBody)
+      .expect(HttpStatus.CREATED);
+
+    console.log(response.body);
+    expect(response.body.length).toBe(1);
+
+    const firstElement = response.body[0];
+    expect(firstElement.startOfDay).toBe(1620572400);
+    expect(firstElement.dayModifier).toBe(2);
+    expect(firstElement.is_day_off).toBe(false);
+    expect(firstElement.timeslots.length).toBe(0);
+  });
+
+  it('when 20210511', async () => {
+    const requestBody: DayTimetableRequest = {
+      start_day_identifier: '20210511',
+      timeslot_interval: 1800,
+      is_ignore_schedule: false,
+      is_ignore_workhour: false,
+      service_duration: 1800,
+      timezone_identifier: 'Asia/Seoul',
+      days: 1,
+    };
+
+    const response = await request(app.getHttpServer())
+      .post('/getTimeSlots')
+      .send(requestBody)
+      .expect(HttpStatus.CREATED);
+
+    console.log(response.body);
+    expect(response.body.length).toBe(1);
+
+    const firstElement = response.body[0];
+    expect(firstElement.startOfDay).toBe(1620658800);
+    expect(firstElement.dayModifier).toBe(3);
+    expect(firstElement.is_day_off).toBe(false);
+    expect(firstElement.timeslots.length).toBe(20);
+  });
 });
