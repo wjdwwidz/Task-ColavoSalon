@@ -14,7 +14,7 @@ export class DayTimetableService {
   constructor(
     private readonly timeslotService: TimeSlotService,
     @InjectRepository(WorkHour)
-    private readonly workHourRepository: WorkHourRepository,
+    private readonly workHourRepository: MongoRepository<WorkHour>,
   ) {}
 
   async getDayTimetables(
@@ -22,9 +22,9 @@ export class DayTimetableService {
   ): Promise<Array<DayTimetable>> {
     const dayTimetables: Array<DayTimetable> = [];
     for (let i = 0; i < request.days; i++) {
-      const timezone = request.timezoneIdentifier;
+      const timezone = request.timezone_identifier;
       const startOfDay = TimezoneUtil.getUnixTimestampForDate(
-        request.startDayIdentifier,
+        request.start_day_identifier,
         timezone,
       );
 
@@ -33,15 +33,15 @@ export class DayTimetableService {
 
       const workHour = await this.getWorkHour(
         dayOfWeek,
-        request.isIgnoreWorkHour,
+        request.is_ignore_workhour,
       );
 
       const timeslots = await this.timeslotService.getTimeSlots(
         startOfDay,
         workHour.open_interval,
         workHour.close_interval,
-        request.timeslotInterval,
-        request.isIgnoreSchedule,
+        request.timeslot_interval,
+        request.is_ignore_schedule,
       );
 
       const dayTimetable: DayTimetable = {

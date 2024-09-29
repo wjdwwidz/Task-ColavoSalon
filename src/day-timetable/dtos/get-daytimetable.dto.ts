@@ -11,18 +11,15 @@ import { Expose } from 'class-transformer';
 export class DayTimetableRequest {
   @IsNotEmpty()
   @IsString()
-  @Expose({ name: 'start_day_identifier' })
-  startDayIdentifier: string;
+  start_day_identifier: string;
 
   @IsNotEmpty()
   @IsString()
-  @Expose({ name: 'timezone_identifier' })
-  timezoneIdentifier: string;
+  timezone_identifier: string;
 
   @IsNotEmpty()
   @IsNumber()
-  @Expose({ name: 'service_duration' })
-  serviceDuration: number;
+  service_duration: number;
 
   @IsNumber()
   @IsOptional()
@@ -30,16 +27,14 @@ export class DayTimetableRequest {
 
   @IsNumber()
   @IsOptional()
-  timeslotInterval: number = 1800;
+  timeslot_interval: number = 1800;
 
   @IsBoolean()
   @IsOptional()
-  @Expose({ name: 'is_ignore_schedule' })
-  isIgnoreSchedule: boolean;
+  is_ignore_schedule: boolean;
 
   @IsBoolean()
-  @Expose({ name: 'is_ignore_workhour' })
-  isIgnoreWorkHour?: boolean;
+  is_ignore_workhour?: boolean;
 }
 
 export class DayTimetableResponse {

@@ -16,9 +16,10 @@ export class BootstrapService implements OnModuleInit {
 
     @InjectRepository(WorkHour)
     private readonly workHourRepository: WorkHourRepository,
-  ) {
-  }
+  ) {}
   onModuleInit(): any {
+    this.eventRepository.delete({})
+    this.workHourRepository.delete({})
     this.loadEventDataFromJson()
     this.loadWorkHourDataFromJson()
   }
@@ -29,7 +30,7 @@ export class BootstrapService implements OnModuleInit {
     const data = JSON.parse(fileContent);
 
     // 데이터베이스에 데이터 삽입
-    await this.eventRepository.save(data)
+    await this.eventRepository.save(data);
     console.log('Data loaded into the database');
   }
 
@@ -39,7 +40,7 @@ export class BootstrapService implements OnModuleInit {
     const data = JSON.parse(fileContent);
 
     // 데이터베이스에 데이터 삽입
-    await this.workHourRepository.save(data)
+    await this.workHourRepository.save(data);
     console.log('Data loaded into the database');
   }
 }

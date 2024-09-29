@@ -62,8 +62,8 @@ export class TimeSlotService {
     }
     return await this.eventRepository.find({
       where: {
-        begin_at: { $lt: startOfDay + closeInterval },
-        end_at: { $gt: startOfDay + openInterval },
+        begin_at: { $gt: startOfDay + openInterval },
+        end_at: { $lt: startOfDay + closeInterval },
       },
     });
   }
