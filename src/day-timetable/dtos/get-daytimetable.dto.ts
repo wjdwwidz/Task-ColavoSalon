@@ -1,38 +1,64 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Timeslot } from '../entities/daytimetable.entity';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { DayTimetable, TimeSlot } from '../entities/daytimetable.entity';
+import { Expose } from 'class-transformer';
 
 export class DayTimetableRequest {
   @IsNotEmpty()
   @IsString()
-  start_day_identifier: string;
+  @Expose({ name: 'start_day_identifier' })
+  startDayIdentifier: string;
 
   @IsNotEmpty()
   @IsString()
-  timezone_identifier: string;
+  @Expose({ name: 'timezone_identifier' })
+  timezoneIdentifier: string;
 
   @IsNotEmpty()
   @IsNumber()
-  service_duration: number;
+  @Expose({ name: 'service_duration' })
+  serviceDuration: number;
 
   @IsNumber()
-  days?: number;
+  @IsOptional()
+  days: number = 1;
 
   @IsNumber()
-  timeslot_interval?: number;
+  @IsOptional()
+  timeslotInterval: number = 1800;
 
   @IsBoolean()
-  is_ignore_schedule?: boolean;
+  @IsOptional()
+  @Expose({ name: 'is_ignore_schedule' })
+  isIgnoreSchedule: boolean;
 
   @IsBoolean()
-  is_ignore_workhour?: boolean;
+  @Expose({ name: 'is_ignore_workhour' })
+  isIgnoreWorkHour?: boolean;
 }
 
 export class DayTimetableResponse {
-  start_of_day: number;
+  @Expose({ name: 'start_of_day' })
+  startOfDay: number;
 
-  day_modifier: number;
+  @Expose({ name: 'day_modifier' })
+  dayModifier: number;
 
+  @Expose({ name: 'is_day_off' })
   is_day_off: boolean;
 
-  timeslots: Timeslot[];
+  @Expose({ name: 'timeslots' })
+  timeslots: TimeSlot[];
+
+  constructor(dayTimeTable: DayTimetable) {
+    this.startOfDay = dayTimeTable.startOfDay;
+    this.dayModifier = dayTimeTable.dayModifier;
+    this.is_day_off = dayTimeTable.isDayOff;
+    this.timeslots = dayTimeTable.timeslots;
+  }
 }

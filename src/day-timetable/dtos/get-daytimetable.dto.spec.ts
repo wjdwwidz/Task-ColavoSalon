@@ -3,11 +3,13 @@ import { DayTimetableRequest } from './get-daytimetable.dto';
 describe('DayTimetableRequest', () => {
   it('should be defined', () => {
     const request: DayTimetableRequest = {
-      start_day_identifier: '20210910',
+      startDayIdentifier: '20210910',
       days: 3,
-      service_duration: 1800,
-      timeslot_interval: 1800,
-      timezone_identifier: 'Asia/Seoul',
+      serviceDuration: 1800,
+      timeslotInterval: 1800,
+      timezoneIdentifier: 'Asia/Seoul',
+      isIgnoreSchedule: false,
+      isIgnoreWorkHour: false,
     };
     expect(request.days).toEqual(3);
   });
