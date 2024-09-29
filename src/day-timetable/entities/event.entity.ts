@@ -1,19 +1,19 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
 
-@Entity()
+@Entity('events')
 export class Event {
   @ObjectIdColumn()
   id: ObjectId;
 
   @Column()
-  created_at: Date;
+  created_at: number;
 
   @Column()
-  updated_at: Date;
+  updated_at: number;
 
   @Column()
-  begin_at: Date;
+  begin_at: number;
 
   @Column()
-  end_at: Date;
+  end_at: number;
 }
