@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkHour } from './entities/workhour.entity';
 import { Event } from './entities/event.entity';
 import { TimeSlotService } from './services/timeslot.service';
+import { BootstrapService } from './services/bootstrap.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([WorkHour, Event])],
@@ -16,6 +17,7 @@ import { TimeSlotService } from './services/timeslot.service';
     TimeSlotService,
     EventRepository,
     WorkHourRepository,
+    BootstrapService,
   ],
   exports: [WorkHourRepository, EventRepository],
 })
